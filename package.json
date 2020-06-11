@@ -1,5 +1,8 @@
 {
+  "scripts": {
+    "start": "electron ./app/index.html"
+},
   "dependencies": {
-    "electron": "5.0.6"
+    "electron": "5.0.6",
   }
 }
