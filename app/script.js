@@ -76,6 +76,7 @@ class App extends React.Component {
 
     if(newTime == 0) {
       if(status === 'work') {
+        this.playBell()
         this.setState({
           status: 'rest',
           time: 1*20*1000,
@@ -109,6 +110,11 @@ class App extends React.Component {
       time: 60*20*1000,
     })
   }
+
+  playBell(){
+    const bell = new Audio('./sounds/bell.wav');
+    bell.play();
+  };
 
 
   /* giveButton(argStatus){
