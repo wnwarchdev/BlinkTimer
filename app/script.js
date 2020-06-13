@@ -56,6 +56,19 @@ class App extends React.Component {
     }
   }
 
+  formatTime(){
+    const {time} = this.state;
+    const min = Math.floor(time / 1000 / 60 % 60)+ '';
+    const sec =  Math.floor(time / 1000 % 60) + '';
+
+    return min.padStart(2,'0') + ':' + sec.padStart(2,'0');
+  }
+
+  closeApp(){
+    window.close()
+    console.log('closed');
+  }
+
 
   /* giveButton(argStatus){
     if (argStatus === 'off') {
@@ -104,7 +117,7 @@ class App extends React.Component {
         {this.giveImg(status)}
         {this.giveTimer(status)}
         {this.giveButton(status)}
-        <button className="btn btn-close">X</button>
+        <button className="btn btn-close" onClick={() => this.closeApp()}>X</button>
       </div>
     )
   }
