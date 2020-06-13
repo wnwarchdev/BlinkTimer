@@ -37,7 +37,7 @@ class App extends React.Component {
   giveButton(argStatus){
     if (argStatus === 'off') {
       return <div>
-        <button className="btn">Start</button>
+        <button className="btn" onClick={() => this.startTimer()}>Start</button>
       </div>
     } else {
       return <div>
@@ -49,7 +49,7 @@ class App extends React.Component {
   giveTimer(argStatus){
     if (argStatus !== 'off') {
       return <div className="timer">
-        18:23
+        {this.formatTime()}
       </div>
     } else {
       return <br/>
@@ -66,7 +66,39 @@ class App extends React.Component {
 
   closeApp(){
     window.close()
-    console.log('closed');
+    //console.log('closed');
+  }
+
+  step = () => {
+    console.log('step');
+    const {time, status} = this.state;
+    let newTime = time - 1000;
+
+    if(newTime == 0) {
+      if(status === 'work') {
+        this.setState({
+          status: 'rest',
+          time: 1*20*1000,
+        })
+      } else if(status === 'rest'){
+        this.setState({
+          status: 'work',
+          time: 60*20*1000,
+        })
+      }
+    } else {
+      this.setState({
+        time: newTime,
+      })
+    }
+  }
+
+  startTimer(){
+    //console.log('startTimer')
+    this.setState({
+      status: 'work',
+      timer: setInterval(this.step, 1000)
+    })
   }
 
 
